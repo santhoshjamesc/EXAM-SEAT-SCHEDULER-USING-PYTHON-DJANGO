@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMER</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSGFpoO9xmv/+/z7nU7ELJ6EeAZWlCmGKZk4M1RtIDZOt6Xq/YD" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX5" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-7MQ/sH7kT6D9TNz8LgzT6O8K5MWv9BdA5v5Ji5Gp159aF0E/yGkJ6xyJ6XqX5JG" crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.min.js"></script>-->
+    <style>
+        .content-section container{
+            display: none; /* Hide all sections by default */
+            margin-top: 100px;
+        }
+
+      /* CSS code for header, banner, container, and footer */
+
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Poppins", sans-serif;
+      }
+
+      /* Header */
+
+      .header {
+         width: 100%;
+         height: 100vh; /* Use 100vh to cover the viewport height */
+         background-color: #ffffff;
+         color: rgba(255, 255, 255, 1);
+         background: url("https://www.hdwallpapers.in/download/colorful_stripes-wide.jpg");
+         background-position: center; /* Center the background image */
+         background-size: cover; /* Make the background image cover the whole container */
+         background-repeat: no-repeat; /* Prevent the background image from repeating */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     }
+
+    
+
+ /* .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color:#ffffff;
+      min-width: 160px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 4px;
+  }
+
+  .dropdown-content input[type="text"], .dropdown-content input[type="password"] {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      box-sizing: border-box;
+      border-radius: 4px;
+  }
+
+  .dropdown-content a {
+      color: rgb(0, 0, 0);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+      font-size: 40px;
+  }
+
+  .dropdown-content a:hover {
+      background-color: #201f1f;
+      font-size: small;
+  }
+
+  .dropdown:hover .dropdown-content {
+      display: block;
+      font-size: small;
+  }*/
+.log{
+
+  padding: 12px 16px;
+  font-size: 10px;
+}
+     
+      /* Banner */
+
+      .banner {
+          height: 80px;
+          width: 100%;
+          text-align: center;
+          margin: 13% auto;
+          font-family: 'Didact Gothic', sans-serif;
+      }
+
+      .banner h1 {
+          font-size: 60px;
+          font-weight: bold;
+          height: 50px;
+         color:#ffffff;
+      }
+
+      .banner p {
+          height:50px ;
+          padding-top: 10px;
+          font-size: 30px;
+          color:#ffffff;
+          font-weight: 200;
+          word-spacing: 1px;
+      }
+
+      .banner a {
+          text-decoration: none;
+          font-size: 18px;
+          color: rgba(255, 255, 255, 1);
+          margin: 90px auto;
+          display: block;
+          font-weight: bold;
+          border: 2px solid rgba(255, 255, 255, 1);
+          width: 27%;
+          height: 60px;
+          line-height: 70px;
+          text-align: center;
+          border-radius: 7px 7px;
+      }
+
+      /* Container */
+
+      .container {
+          width: 100%;
+          height: 300px;
+          text-align: center;
+          font-family: 'Didact Gothic', sans-serif;
+      }
+
+      .text {
+          padding-top: 50px;
+          margin-top: 40px;
+      }
+
+      .text h1 {
+          font-size: 30px;
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.8);
+      }
+
+      .text p {
+          font-size: 18px;
+          color: rgba(0, 0, 0, .5);
+          padding-top: 4px;
+      }
+
+      .main {
+          width: 90%;
+          height: 400px;
+          margin: 50px 5%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+      }
+
+      .single {
+          width: 33%;
+          height: 100%;
+          text-align: center;
+          padding: 40px 20px;
+      }
+
+      .single i {
+          font-size: 45px;
+      }
+
+      .single p {
+          padding-top: 40px;
+          color: rgba(0, 0, 0, 0.6);
+          display: block;
+          line-height: 180%;
+          font-size: 14px;
+      }
+
+      .single a {
+          text-decoration: none;
+          color: rgba(0, 0, 0, 0.8);
+          font-size: 18px;
+          font-weight: 700;
+          width: 45%;
+          height: 55px;
+          line-height: 55px;
+          border: 2px solid rgba(0, 0, 0, 0.8);
+          display: block;
+          border-radius: 5px;
+          margin: 40px auto;
+          align-items: self-start;
+      }
+
+     
+
+      /* Search Box */
+      .input-group{
+          display: flex;
+          height: 76px;
+      
+          background: #fff;
+          margin: 0 auto;
+          border-radius: 8px 8px 8px 8px;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          border-color: #090e02;
+      }
+
+      .input-box i,
+      .input-box .button {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+      }
+
+      .input-group i {
+          left: 20px;
+          font-size: 30px;
+          color: #707070;
+      }
+
+      .input-box input {
+          height: 100%;
+          width: 100%;
+          outline: none;
+          font-size: 18px;
+          font-weight: 400;
+          border: none;
+          padding: 0 155px 0 65px;
+          background-color: transparent;
+      }
+
+      .input-group .button {
+          right: 20px;
+          font-size: 16px;
+          font-weight: 400;
+          color: #fff;
+          border: none;
+          padding: 12px 30px;
+          border-radius:4px 4px 4px 4px ;
+          background-color: #ecbd00;
+          cursor: pointer;
+      }
+
+      .input-box .button.clicked {
+          transform: translateY(-50%) scale(0.98);
+      }
+
+      /* Responsive */
+      @media screen and (max-width: 500px) {
+          .input-box {
+              height: px;
+              margin: 0 auto;
+          }
+          .input-box i {
+              left: 12px;
+              font-size: 25px;
+          }
+          .input-box input {
+              padding: 0 112px 0 50px;
+          }
+          .input-box .button {
+              right: 12px;
+              font-size: 14px;
+              padding: 8px 18px;
+          }
+      }
+      .but{
+        color: rgb(151, 211, 151);
+      }
+      
+
+/* Our Team
+-------------------------------------------------------*/
+
+* {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #777;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+
+
+        #team i {
+            font-size: 26px;
+            color: #ffff;
+        }
+
+        #team p {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        #team .card {
+            border-radius: 0;
+            box-shadow: 5px 5px 15px #e74c3c;
+            transition: all 0.3s ease-in;
+            -webkit-transition: all 0.3s ease-in;
+            -moz-transition: all 0.3s ease-in;
+        }
+
+        #team .card:hover {
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 5px 5px 10px #9e9e9e;
+        }
+
+        #team .card:hover h3,
+        #team .card:hover i {
+            color: #fff;
+        }
+  
+  /* RESULT AND NOTES
+  *************************************/
+  @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+
+body {
+  font-family: "Lato", Helvetica, Arial;
+  font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://www.hdwallpapers.in/download/colorful_stripes-wide.jpg'); /* replace with your background image URL */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+}
+
+
+.container2:before,
+.container2:after {
+  -webkit-border-sizing: border-box;
+  -moz-border-sizing: border-box;
+  border: border-box;
+  align-items: center;
+}
+
+.container2{
+  width: 900px;
+  margin: 60px auto;
+  display: block;
+  align-content: center;
+
+}
+
+.container2>ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.title {
+  font-family: "Pacifico";
+  font-weight: norma;
+  font-size: 50px;
+  text-align: center;
+  line-height: 1.4;
+  color: #ffffff;
+  align-content: center;
+}
+
+.dropdown {
+  position: relative;
+  display: grid;
+  align-items: center;
+ 
+}
+
+.dropdown a {
+  text-decoration: none;
+
+}
+
+.dropdown [data-toggle=dropdown] {
+  display: block;
+  color: white;
+  background: #C0392B;
+  -webkit-box-shadow: 0 1px 0 #d65548 inset, 0 -1px 0 #962d22 inset;
+  -moz-box-shadow: 0 1px 0 #d65548 inset, 0 -1px 0 #962d22 inset;
+  box-shadow: 0 1px 0 #d65548 inset, 0 -1px 0 #962d22 inset;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+.dropdown [data-toggle=dropdown]:hover {
+  background: #dd7367;
+}
+
+.dropdown [data-toggle=dropdown]:before {
+  position: absolute;
+  display: block;
+  content: "▼";
+  font-size: 0.7em;
+  color: #fff;
+  top: 13px;
+  right: 10px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: -webkit-transform 0.6s;
+  -moz-transition: -moz-transform 0.6s;
+  -o-transition: -o-transform 0.6s;
+  transition: transform 0.6s;
+}
+
+.dropdown>.dropdown-menu {
+  max-height: 0;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  -webkit-transform: scaleY(0);
+  -moz-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  -o-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 50% 0%;
+  -moz-transform-origin: 50% 0%;
+  -ms-transform-origin: 50% 0%;
+  -o-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+  -webkit-transition: max-height 0.6s ease-out;
+  -moz-transition: max-height 0.6s ease-out;
+  -o-transition: max-height 0.6s ease-out;
+  transition: max-height 0.6s ease-out;
+  animation: hideAnimation 0.4s ease-out;
+  -moz-animation: hideAnimation 0.4s ease-out;
+  -webkit-animation: hideAnimation 0.4s ease-out;
+}
+
+.dropdown>.dropdown-menu li {
+  padding: 0;
+}
+
+.dropdown>.dropdown-menu li a {
+  display: block;
+  color: #ffffff;
+  background: #ff8671;
+  -webkit-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
+  -moz-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
+  box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
+  padding: 10px 10px;
+}
+
+.dropdown>.dropdown-menu li a:hover {
+  background: #dd3e3e;
+}
+
+.dropdown>input[type=checkbox] {
+  opacity: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.dropdown>input[type=checkbox]:checked~.dropdown-menu {
+  max-height: 9999px;
+  display: block;
+  -webkit-transform: scaleY(1);
+  -moz-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  -o-transform: scaleY(1);
+  transform: scaleY(1);
+  animation: showAnimation 0.5s ease-in-out;
+  -moz-animation: showAnimation 0.5s ease-in-out;
+  -webkit-animation: showAnimation 0.5s ease-in-out;
+  -webkit-transition: max-height 2s ease-in-out;
+  -moz-transition: max-height 2s ease-in-out;
+  -o-transition: max-height 2s ease-in-out;
+  transition: max-height 2s ease-in-out;
+}
+
+.dropdown>input[type=checkbox]:checked+a[data-toggle=dropdown]:before {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+  -webkit-transition: -webkit-transform 0.6s;
+  -moz-transition: -moz-transform 0.6s;
+  -o-transition: -o-transform 0.6s;
+  transition: transform 0.6s;
+}
+
+@keyframes showAnimation {
+  0% {
+    -webkit-transform: scaleY(0.1);
+    -moz-transform: scaleY(0.1);
+    -ms-transform: scaleY(0.1);
+    -o-transform: scaleY(0.1);
+    transform: scaleY(0.1);
+  }
+
+  40% {
+    -webkit-transform: scaleY(1.04);
+    -moz-transform: scaleY(1.04);
+    -ms-transform: scaleY(1.04);
+    -o-transform: scaleY(1.04);
+    transform: scaleY(1.04);
+  }
+
+  60% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.04);
+    -moz-transform: scaleY(1.04);
+    -ms-transform: scaleY(1.04);
+    -o-transform: scaleY(1.04);
+    transform: scaleY(1.04);
+  }
+
+  100% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.02);
+    -moz-transform: scaleY(1.02);
+    -ms-transform: scaleY(1.02);
+    -o-transform: scaleY(1.02);
+    transform: scaleY(1.02);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@-moz-keyframes showAnimation {
+  0% {
+    -webkit-transform: scaleY(0.1);
+    -moz-transform: scaleY(0.1);
+    -ms-transform: scaleY(0.1);
+    -o-transform: scaleY(0.1);
+    transform: scaleY(0.1);
+  }
+
+  40% {
+    -webkit-transform: scaleY(1.04);
+    -moz-transform: scaleY(1.04);
+    -ms-transform: scaleY(1.04);
+    -o-transform: scaleY(1.04);
+    transform: scaleY(1.04);
+  }
+
+  60% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.04);
+    -moz-transform: scaleY(1.04);
+    -ms-transform: scaleY(1.04);
+    -o-transform: scaleY(1.04);
+    transform: scaleY(1.04);
+  }
+
+  100% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.02);
+    -moz-transform: scaleY(1.02);
+    -ms-transform: scaleY(1.02);
+    -o-transform: scaleY(1.02);
+    transform: scaleY(1.02);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@-webkit-keyframes showAnimation {
+  0% {
+    -webkit-transform: scaleY(0.1);
+    -moz-transform: scaleY(0.1);
+    -ms-transform: scaleY(0.1);
+    -o-transform: scaleY(0.1);
+    transform: scaleY(0.1);
+  }
+
+  40% {
+    -webkit-transform: scaleY(1.04);
+    -moz-transform: scaleY(1.04);
+    -ms-transform: scaleY(1.04);
+    -o-transform: scaleY(1.04);
+    transform: scaleY(1.04);
+  }
+
+  60% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.04);
+    -moz-transform: scaleY(1.04);
+    -ms-transform: scaleY(1.04);
+    -o-transform: scaleY(1.04);
+    transform: scaleY(1.04);
+  }
+
+  100% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.02);
+    -moz-transform: scaleY(1.02);
+    -ms-transform: scaleY(1.02);
+    -o-transform: scaleY(1.02);
+    transform: scaleY(1.02);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hideAnimation {
+  0% {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+
+  60% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.02);
+    -moz-transform: scaleY(1.02);
+    -ms-transform: scaleY(1.02);
+    -o-transform: scaleY(1.02);
+    transform: scaleY(1.02);
+  }
+
+  100% {
+    -webkit-transform: scaleY(0);
+    -moz-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -o-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+}
+
+@-moz-keyframes hideAnimation {
+  0% {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+
+  60% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.02);
+    -moz-transform: scaleY(1.02);
+    -ms-transform: scaleY(1.02);
+    -o-transform: scaleY(1.02);
+    transform: scaleY(1.02);
+  }
+
+  100% {
+    -webkit-transform: scaleY(0);
+    -moz-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -o-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+}
+
+@-webkit-keyframes hideAnimation {
+  0% {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+
+  60% {
+    -webkit-transform: scaleY(0.98);
+    -moz-transform: scaleY(0.98);
+    -ms-transform: scaleY(0.98);
+    -o-transform: scaleY(0.98);
+    transform: scaleY(0.98);
+  }
+
+  80% {
+    -webkit-transform: scaleY(1.02);
+    -moz-transform: scaleY(1.02);
+    -ms-transform: scaleY(1.02);
+    -o-transform: scaleY(1.02);
+    transform: scaleY(1.02);
+  }
+
+  100% {
+    -webkit-transform: scaleY(0);
+    -moz-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -o-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+}
+
+
+/*---------------login-----------------*/
+
+/*.cont:before,
+.cont:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*/
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background-image: url('https://www.hdwallpapers.in/download/colorful_stripes-wide.jpg');
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+.tip {
+    font-size: 20px;
+    margin: 40px auto 50px;
+    text-align: center;
+}
+
+.cont {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 550px;
+    margin: 0 auto 100px;
+    background: #fff;
+   /* box-shadow: -10px -10px 15px rgba(1, 1, 1, 0.3), 10px 10px 15px rgba(70, 70, 70, 0.15), inset -10px -10px 15px rgba(255, 255, 255, 0.3), inset 10px 10px 15px rgba(70, 70, 70, 0.15);*/
+}
+
+.form {
+    position: relative;
+    width: 640px;
+    height: 100%;
+    -webkit-transition: -webkit-transform 1.2s ease-in-out;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+    padding: 50px 30px 0;
+}
+
+.sub-cont {
+    overflow: hidden;
+    position: absolute;
+    left: 640px;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    padding-left: 260px;
+    background: #fff;
+    -webkit-transition: -webkit-transform 1.2s ease-in-out;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+
+.cont.s--signup .sub-cont {
+    -webkit-transform: translate3d(-640px, 0, 0);
+    transform: translate3d(-640px, 0, 0);
+}
+
+.cont button {
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.img {
+    overflow: hidden;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding-top: 360px;
+}
+
+.img:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    background-image: url("ext.jpg");
+    opacity: .8;
+    background-size: cover;
+    -webkit-transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+
+.img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.cont.s--signup .img:before {
+    -webkit-transform: translate3d(640px, 0, 0);
+    transform: translate3d(640px, 0, 0);
+}
+
+.img__text {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+    -webkit-transition: -webkit-transform 1.2s ease-in-out;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+
+.img__text h2 {
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.img__text p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.cont.s--signup .img__text.m--up {
+    -webkit-transform: translateX(520px);
+    transform: translateX(520px);
+}
+
+.img__text.m--in {
+    -webkit-transform: translateX(-520px);
+    transform: translateX(-520px);
+}
+
+.cont.s--signup .img__text.m--in {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.img__btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 100px;
+    height: 36px;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.img__btn:after {
+    content: '';
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    border-radius: 30px;
+}
+
+.img__btn span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: -webkit-transform 1.2s;
+    transition: -webkit-transform 1.2s;
+    transition: transform 1.2s;
+    transition: transform 1.2s, -webkit-transform 1.2s;
+}
+
+.img__btn span.m--in {
+    -webkit-transform: translateY(-72px);
+    transform: translateY(-72px);
+}
+
+.cont.s--signup .img__btn span.m--in {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.cont.s--signup .img__btn span.m--up {
+    -webkit-transform: translateY(72px);
+    transform: translateY(72px);
+}
+
+h2 {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    width: 260px;
+    margin: 25px auto 0;
+    text-align: center;
+}
+
+label span {
+    font-size: 12px;
+    color: #cfcfcf;
+    text-transform: uppercase;
+}
+
+.cont input {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.forgot-pass {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #cfcfcf;
+}
+
+.submit {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background: #d4af7a;
+    text-transform: uppercase;
+}
+
+.fb-btn {
+    border: 2px solid #95330c;
+    color: #8fa1c7;
+}
+
+.fb-btn span {
+    font-weight: bold;
+    color: #455a81;
+}
+
+.sign-in {
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.cont.s--signup .sign-in {
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 1.2s;
+    transition-duration: 1.2s;
+    -webkit-transform: translate3d(640px, 0, 0);
+    transform: translate3d(640px, 0, 0);
+}
+
+.sign-up {
+    -webkit-transform: translate3d(-900px, 0, 0);
+    transform: translate3d(-900px, 0, 0);
+}
+
+.cont.s--signup .sign-up {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+
+/*---------timetable------------*/
+
+.result{
+  font-family: "Lato", Helvetica, Arial;
+  text-align: center;
+  height: 50px;
+  width: 460px;
+  margin: 0 auto;
+  margin-top: 50px;
+  justify-content: center;
+}
+/*--------result-----------*/
+
+.result ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.result li a {
+  display: block;
+  width: 500px;
+  height: 50px;
+  
+  text-decoration: none;
+  background: #dd3e3e;
+  color: white;
+  border-bottom: 1px solid #000000;
+}
+
+.result li:last-child a{
+  border-bottom: none;
+}
+
+.result li a:hover {
+  background: rgb(238, 139, 108);
+  color: #666;
+}
+/*--navbar---------
+-------------------*/
+.navcenter{
+  display: flex;
+   justify-content: center; 
+   width: 100%;
+   height: 56px;
+   padding-top: 0px;
+   margin-top: 0px;
+
+
+}
+.container-fluid1{
+  background-color:#ffffff;
+  display: flex;
+  font-size: 20px;
+  width: 100%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+ justify-content: center;
+ margin-left: 0px;
+ margin-right: 0px;
+ padding-left: 716px;
+ padding-right: 716px;
+ padding-top: 0px;
+ margin-top: 0px;
+}
+
+.navbarNav {
+    text-align: center;
+    font-size: 20px;
+    width: 100%;
+    justify-content: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 0px;
+    /* text-align: right; */ /* Remove this line */
+}
+
+
+
+.navbar-nav .nav-link {
+ text-align: center;
+ padding: 30px 35px; /* Add some space between links */
+ width: 100%;
+}
+
+/*------------timetable-------------*/
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+body {
+  font-family: "Lato", Helvetica, Arial;
+  font-size: 16px;
+}
+
+.container3:before, .container3:after {
+  -webkit-border-sizing: border-box;
+  -moz-border-sizing: border-box;
+ 
+}
+
+.container3 {
+  width: 350px;
+  margin: 50px auto;
+}
+.container3 > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.title {
+  font-family: 'Pacifico';
+  font-weight: norma;
+  font-size: 40px;
+  text-align: center;
+  line-height: 1.4;
+  color: #C0392B;
+}
+
+.dropdown2 {
+  position: relative;
+}
+
+.dropdown2 a {
+  text-decoration: none;
+  display: block;
+  color: white;
+  background: #C0392B;
+  -moz-box-shadow: 0 1px 0 #d65548 inset, 0 -1px 0 #962d22 inset;
+  -webkit-box-shadow: 0 1px 0 #d65548 inset, 0 -1px 0 #962d22 inset;
+  box-shadow: 0 1px 0 #d65548 inset, 0 -1px 0 #962d22 inset;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+.dropdown2 a:before {
+  position: absolute;
+  display: block;
+  content: '\25BC';
+  font-size: 0.7em;
+  color: #fff;
+  top: 13px;
+  right: 10px;
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -moz-transition: -moz-transform 0.6s;
+  -o-transition: -o-transform 0.6s;
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+}
+
+.dropdown2 .dropdown-menu {
+  max-height: 0;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  -moz-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -moz-transform-origin: 50% 0%;
+  -ms-transform-origin: 50% 0%;
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+  -moz-transition: max-height 0.6s ease-out;
+  -o-transition: max-height 0.6s ease-out;
+  -webkit-transition: max-height 0.6s ease-out;
+  transition: max-height 0.6s ease-out;
+  animation: hideAnimation 0.4s ease-out;
+  -moz-animation: hideAnimation 0.4s ease-out;
+  -webkit-animation: hideAnimation 0.4s ease-out;
+}
+
+.dropdown2 .dropdown-menu li {
+  padding: 0;
+}
+
+.dropdown2 .dropdown-menu li a {
+  display: block;
+  color: #6f6f6f;
+  background: #EEE;
+  -moz-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
+  -webkit-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
+  box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
+  padding: 10px 10px;
+}
+
+.dropdown2 .dropdown-menu li a:hover {
+  background: #f6f6f6;
+}
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navcenter">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid1">
+        <!--<a class="navbar-brand" href="#">NavBar</a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link section-link" href="#" data-section="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link section-link" href="#" data-section="results">Results</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link section-link" href="#" data-section="notes">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link section-link" href="#" data-section="timetable">Timetable</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link section-link" href="#" data-section="about">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link section-link" href="#" data-section="login">Login</a>
+             
+
+              </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</div>
+
+<!-- Content Sections -->
+<div id="home" class="content-section container">
+    
+        <div class="banner"> 
+            <h1>EXAM CELL</h1>
+            <p>COLLEGE OF ENGINEERING CHERTHALA</p>
+
+        </div>
+    
+        
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+              <input type="text" class="form-control" placeholder="Register Number">
+             
+                  <button class="button" type="submit">Search</button>
+                      <i class="glyphicon glyphicon-search"></i>
+                  </button>
+              
+          </div>
+      </form>
+   </div>
+</div>
+<div id="results" class="content-section container" style="display:none;">
+ 
+  <div class="container2">
+    <h1 class="title">RESULT</h1>
+    <ul>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">CS </a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_linkr">First Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Second Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Third Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Forth Year</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">EC</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">First Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Second Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Third Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Forth Year</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">EEE</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">First Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Second Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Third Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Forth Year</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">AI</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">First Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Second Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Third Year</a></li>
+          <li><a href="https://drive.google.com/file/d/1MRfk6rxSahQpD0tgDOYWI5FMmjR3tQkE/view?usp=drive_link">Forth Year</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div id="notes" class="content-section container" style="display:none;">
+  <div class="container2">
+    <h1 class="title">NOTES</h1>
+    <ul>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">CS </a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/drive/folders/1-03aVzHIqQGnrVNYoP-0bRX21p6ccYWX?usp=drive_link">S1</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1-03aVzHIqQGnrVNYoP-0bRX21p6ccYWX?usp=drive_link">S2</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1-03aVzHIqQGnrVNYoP-0bRX21p6ccYWX?usp=drive_link">S3</a></li>
+          <li><a href="https://drive.google.com/drive/folders/16gg3mmXSfDCaR00_8S6WsfTHdLyXnnI9?usp=drive_link">S4</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1LOiSZ2Pgo6UfmMMVskaiQc6BWkVsl2hi?usp=drive_link">S5</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S6</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S7</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S8</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">EC</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/drive/folders/1-03aVzHIqQGnrVNYoP-0bRX21p6ccYWX?usp=drive_link">S1</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1-03aVzHIqQGnrVNYoP-0bRX21p6ccYWX?usp=drive_link">S2</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1-03aVzHIqQGnrVNYoP-0bRX21p6ccYWX?usp=drive_link">S3</a></li>
+          <li><a href="https://drive.google.com/drive/folders/16gg3mmXSfDCaR00_8S6WsfTHdLyXnnI9?usp=drive_link">S4</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1LOiSZ2Pgo6UfmMMVskaiQc6BWkVsl2hi?usp=drive_link">S5</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S6</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S7</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S8</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">EEE</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S1</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S2</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S3</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S4</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S5</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S6</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S7</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S8</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <input type="checkbox" />
+        <a href="#" data-toggle="dropdown">AI</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S1</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S2</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S3</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S4</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S5</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S6</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S7</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1Uikc_UWna5cEjzw7Ud1n7Bp5ENxlQRyO?usp=drive_link">S8</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="timetable" class="content-section container" style="display:none;">
+  <div class="result">
+    
+    <h1 class="title">TimeTable</h1>
+  
+    <div class="container3">
+      
+      <ul>
+        <li class="dropdown2">
+          <a href="https://drive.google.com/file/d/10MP3SNwq5civD924XE2VGEaLUdZOVNmn/view?usp=drive_link" >First Year</a>
+    
+        </li>
+        <li class="dropdown2">
+          <a href="https://drive.google.com/file/d/10MP3SNwq5civD924XE2VGEaLUdZOVNmn/view?usp=drive_link">Second Year</a>
+        
+        </li>
+        <li class="dropdown2">
+          <a href="https://drive.google.com/file/d/10MP3SNwq5civD924XE2VGEaLUdZOVNmn/view?usp=drive_link">Third Year</a>
+   
+        </li>
+        <li class="dropdown2">
+          <a href="https://drive.google.com/file/d/10MP3SNwq5civD924XE2VGEaLUdZOVNmn/view?usp=drive_link">Forth Year</a>
+   
+        </li>
+      </ul>
+    </div> 
+  </div>
+</div>
+</div>
+<div id="about" class="content-section container" style="display:none;">
+  <section id="team">
+    <div class="container my-3 py-5 text-center">
+      <div class="row mb-5">
+        <div class="col">
+          <h1>Our Team</h1>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 pt-1">
+          <div class="card h-100">
+            <div class="card-body">
+              <img class="img-fouild rounded w-75 mb-3" src="/assets/santhosh (1).jpg" alt="image">
+              <h3>Santhosh James</h3>
+              <h5>BackEnd Developer</h5>
+    
+              <div class="d-flex flex-row justify-content-center">
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-3 col-md-6 pt-1">
+          <div class="card h-100">
+            <div class="card-body">
+              <img class="img-fouild rounded w-75 mb-3" src="/assets/sarangin.jpg" alt="image">
+              <h3>Akshitha D Sarangi</h3>
+              <h5>FrontEnd Developer</h5>
+              
+              <div class="d-flex flex-row justify-content-center">
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-3 col-md-6 pt-1">
+          <div class="card h-100">
+            <div class="card-body">
+              <img class="img-fouild rounded w-75 mb-3" src="/assets/akshay (1).jpg" alt="tcp-head">
+              <h3>Akshay S</h3>
+              <h5>BackEnd Developer</h5>
+           
+              <div class="d-flex flex-row justify-content-center">
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-3 col-md-6 pt-1">
+          <div class="card h-100">
+            <div class="card-body">
+              <img class="img-fouild rounded w-75 mb-3" src="/assets/adeep1 (2).jpg" alt="image">
+              <h3>Adeep Naushad </h3>
+              <h5>FrontEnd Developer</h5>
+             
+              <div class="d-flex flex-row justify-content-center">
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+                <div class="p-4">
+                  <a href="#">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+      <p>Contact us: <a href="mailto:info@example.com">info@example.com</a> | Phone: +1-123-456-7890</p>
+    </div>
+  </footer>
+</div>
+
+<!--login------------>
+<div id="login" class="content-section container" style="display:none;">
+  <br>
+  <br>
+      <div class="cont">
+          <div class="form sign-in">
+            <form action="" method="post">
+              {% csrf_token %}
+                <h2>Welcome</h2>
+                <label>
+                    <h6>Username</h6>
+                    <input type="text" name="username" placeholder="enter your username"><br>
+                </label>
+                <label>
+                    <h6>Password</h6>
+                    <input type="password" name="password" placeholder="enter your password"><br>
+                </label>
+                <p class="forgot-pass">Forgot password?</p>
+                <button type="submits" class="submit">Sign In</button>
+           
+          </div>
+          <div class="sub-cont">
+              <div class="img">
+                  <div class="img__text m--up">
+                   
+                      <h3>Don't have an account? Please Sign up!</h3>
+                  </div>
+                  <div class="img__text m--in">
+                  
+                      <h3>If you already has an account, just sign in.</h3>
+                  </div>
+                  <div class="img__btn">
+                      <span class="m--up">Sign Up</span>
+                      <span class="m--in">Sign In</span>
+                  </div>
+              </div>
+              <div class="form sign-up">
+                <form action="" method="post">
+                  {% csrf_token %}
+                   <h2>Create your Account</h2>
+                  
+                   <label>
+                      <h6></h6>Username</h6>
+                      <input type="text" name="username" placeholder="enter your username"><br>
+                   </label>
+                   <label>
+                      <h6>Password</h6>
+                      <input type="password" name="password" placeholder="enter your password"><br>
+                   </label>
+                   <label>
+                      <h6>Confirm Password</h6>
+                      <input type="password" name="confirmpassword" placeholder="renter your password">
+                   </label>
+                   <button type="submit" class="submit">Sign Up</button>
+                </form>  
+              </div>
+          </div>
+      </div>
+  
+      <script>
+          document.querySelector('.img__btn').addEventListener('click', function() {
+              document.querySelector('.cont').classList.toggle('s--signup');
+          });
+      </script>
+</div>
+
+<!-- Bootstrap and JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    const sectionLinks = document.querySelectorAll('.section-link');
+
+    sectionLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const sectionId = this.getAttribute('data-section');
+            showSection(sectionId);
+
+            sectionLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
+    });
+
+    // Explicitly click the 'Home' link to set it as default on page load
+    const homeLink = document.querySelector('.section-link[data-section="home"]');
+    if(homeLink) {
+        homeLink.click();
+    }
+});
+
+</script>
+</body>
+</html>

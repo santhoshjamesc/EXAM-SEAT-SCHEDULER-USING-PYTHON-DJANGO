@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link rel="shortcut icon" type="x-icon" href="https://www.pngmart.com/files/23/A-PNG-Photo.png">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMER</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar styles */
+        .nav-bar {
+           display: flex;
+            justify-content: left;
+            font-size: larger;
+            background-color: #ee3017;
+            padding: 10px 20px;
+            height: 50px;
+            text-align: left;
+        }
+
+        .nav-bar a {
+          float: left;
+          justify-content: center;
+            color: white;
+            text-align: left;
+            padding: 10px 20px;
+            padding-left: 0px;
+            margin-left: 0px;
+            text-decoration: none;
+            font-size: larger;
+            padding-left: 15px;
+            
+        }
+
+        .nav-bar a:hover {
+      
+            color: black;
+        }
+
+        /* Main content styles */
+        h1 {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+		   .preset-dropdown{
+            border-radius: 4px;
+        }
+        #preset-dropdown {
+            width: 250px;
+            height: 37px;
+            font-size: 16px;
+            border-radius: 2px;
+        }
+
+        #view-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+              border-radius: 4px;
+        }
+
+  
+        #view-button:hover{
+            background-color:#3e8e41;
+        }
+
+        #delete-button {
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+              border-radius: 4px;
+        }
+
+  
+        #delete-button:hover{
+            background-color:yellow;
+            color: black;
+        }
+
+        #seat-allocation-form {
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            height: 30px;
+            font-size: 16px;
+        }
+
+        #subject-inputs {
+            margin-bottom: 20px;
+        }
+
+        #room-details {
+            margin-bottom: 20px;
+        }
+
+        table.room-table, table.subject-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table.room-table th, table.room-table td,
+        table.subject-table th, table.subject-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table.room-table th, table.subject-table th {
+            background-color: #f2f2f2;
+        }
+
+        #seat-allocation-results {
+            border: 1px solid #ddd;
+            padding: 8px;
+            margin-top: 20px;
+        }
+           .view-right 
+        {
+    margin-left: 20px;
+         }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="/">Home</a>
+        <a href="#">Allocate</a>
+        <a href="{% url 'student_list_and_add' %}">Students</a>
+    </div>
+    <h1>Allocation for {{ user }}</h1>
+    <!-- presets_template.html -->
+
+
+    <div class="view-right">
+        <select id="preset-dropdown">
+            {% for preset in presets %}
+                <option value="{{ preset.preset_name }}">{{ preset.preset_name }}</option>
+            {% empty %}
+                <option>No presets found.</option>
+            {% endfor %}
+        </select>
+        <button id="view-button">View</button>
+        <button id="delete-button" type="button">Delete</button>
+    </div>
+
+    <script>
+        document.getElementById('delete-button').addEventListener('click', function() {
+            const dropdown = document.getElementById('preset-dropdown');
+            const selectedPreset = dropdown.options[dropdown.selectedIndex].value;
+
+            if (selectedPreset) {
+                deletePreset(selectedPreset);
+            } else {
+                alert('No preset selected.');
+            }
+        });
+
+        function deletePreset(presetName) {
+            $.ajax({
+                url: '{% url "delete_preset" %}',
+                type: 'POST',
+                data: {
+                    'preset_name': presetName,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        const dropdown = document.getElementById('preset-dropdown');
+                        dropdown.remove(dropdown.selectedIndex);
+                        alert('Preset deleted successfully.');
+                    } else {
+                        alert('Failed to delete preset: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the preset.');
+                }
+            });
+        }
+    </script>
+
+
+
+    <form id="seat-allocation-form" method="post" action="/seat-allocation/">
+
+        {% csrf_token %}
+        <label for="birthdate">Select your exam date:</label>
+        
+        <input type="date" id="birthdate" name="birthdate">
+        <br><br>
+        <label for="num-subjects">Number of Subjects:</label>
+        <input type="number" id="num-subjects" name="num-subjects" min="1" onchange="updateSubjectsInput();">
+        <div id="subject-inputs"></div>
+        <div id="room-details">
+            
+        </div>
+        <div id="seat-allocation-results"></div>
+        
+        
+
+        <script>
+    // Get the current date
+                    var currentDate = new Date().toISOString().split('T')[0];
+    
+    // Set the min attribute of the birthdate input to the current date
+                  document.getElementById("birthdate").min = currentDate;
+            </script>
+        <button type="submit">Run</button>
+    </form>
+    <script>
+        $(document).ready(function() {
+            $("#view-button").click(function() {
+                var presetName = $('#preset-dropdown').val();
+                var user = "{{ user }}";
+                $.ajax({
+                    type: "GET",
+                    url: "/rooms/",
+                    data: {
+                        preset: presetName,
+                        user: user
+                    },
+                    success: function(response) {
+                        var rooms = response.split('</p>');
+                        var html = '<table class="room-table">';
+                        html += '<tr><th>#</th><th>Room Name</th><th>Benches</th><th>Seats per Bench</th></tr>';
+                        var totalRooms = 0;
+                        for (var i = 0; i < rooms.length; i++) {
+                            var roomInfo = rooms[i].replace('<p>', '').trim();
+                            if (roomInfo) {
+                                var roomData = roomInfo.split(', ');
+                                var roomName = roomData[0].split(': ')[1];
+                                var benches = roomData[1].split(': ')[1];
+                                var seatsPerBench = roomData[2].split(': ')[1];
+                                html += '<tr>';
+                                html += '<td>' + (i + 1) + '</td>';
+                                html += '<td><input type="text" id="room-name-' + i + '" name="room-name-' + i + '" value="' + roomName + '" readonly></td>';
+                                html += '<td><input type="number" id="room-benches-' + i + '" name="room-benches-' + i + '" value="' + benches + '"></td>';
+                                html += '<td><input type="number" id="room-seats-' + i + '" name="room-seats-' + i + '" value="' + seatsPerBench + '"></td>';
+                                html += '</tr>';
+                                totalRooms++;
+                            }
+                        }
+                        html += '</table>';
+                        html += '<input type="hidden" id="total-rooms-input" name="total-rooms" value="' + totalRooms + '">';
+                        $("#room-details").html(html);
+                    },
+                    error: function(xhr, status, error) {
+                        $("#room-details").html("<p>Error retrieving details. Please try again.</p>");
+                    }
+                });
+            });
+        });
+
+        function updateSubjectsInput() {
+            var numSubjects = parseInt($("#num-subjects").val());
+            var subjectsHTML = '<table class="subject-table">';
+            subjectsHTML += '<tr><th>#</th><th>Subject Name</th><th>Branch</th><th>Semester</th></tr>';
+            for (var i = 1; i <= numSubjects; i++) {
+                subjectsHTML += '<tr>';
+                subjectsHTML += '<td>' + i + '</td>';
+                subjectsHTML += '<td><input type="text" id="subject-name-' + i + '" name="subject-name-' + i + '"></td>';
+                subjectsHTML += '<td><select id="branch-' + i + '" name="branch-' + i + '"></select></td>';
+                subjectsHTML += '<td><select id="semester-' + i + '" name="semester-' + i + '"></select></td>';
+                subjectsHTML += '</tr>';
+            }
+            subjectsHTML += '</table>';
+            $("#subject-inputs").html(subjectsHTML);
+            fetchDropdownData(numSubjects);
+        }
+
+        function fetchDropdownData(numSubjects) {
+            $.ajax({
+                type: "GET",
+                url: "/get-dropdown-data/",
+                success: function(response) {
+                    for (let i = 1; i <= numSubjects; i++) {
+                        let branchSelect = $('#branch-' + i);
+                        let semesterSelect = $('#semester-' + i);
+
+                        // Populate branch dropdown
+                        Object.keys(response).forEach(function(branch) {
+                            branchSelect.append($('<option>', { value: branch, text: branch }));
+                        });
+
+                        // Set up event listener for when branch changes
+                        branchSelect.change(function() {
+                            let selectedBranch = $(this).val();
+                            semesterSelect.empty(); // Clear previous options
+
+                            // Populate semester dropdown based on selected branch
+                            response[selectedBranch].forEach(function(semester) {
+                                semesterSelect.append($('<option>', { value: semester, text: semester }));
+                            });
+                        });
+
+                        // Trigger change to populate initial semesters
+                        branchSelect.trigger('change');
+                    }
+                }
+            });
+        }
+
+        // Validation function to check for duplicate branch-semester combinations
+        function validateBranchSemester() {
+            var selectedCombinations = []; // Array to store selected branch-semester combinations
+            var isValid = true;
+
+            // Iterate through each subject input to get selected values
+            $("select[id^='branch-']").each(function() {
+                var branch = $(this).val();
+                var semester = $(this).closest("tr").find("select[id^='semester-']").val();
+                var combination = branch + "-" + semester; // Combine branch and semester
+
+                // Check if the combination already exists in the array
+                if (selectedCombinations.includes(combination)) {
+                    isValid = false; // Validation fails if duplicate combination found
+                    return false; // Exit the loop early
+                } else {
+                    selectedCombinations.push(combination); // Add combination to the array
+                }
+            });
+
+            return isValid; // Return validation result
+        }
+
+        $(document).ready(function() {
+            $("#seat-allocation-form").submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Validate branch-semester combinations
+                if (validateBranchSemester()) {
+                    // If validation passes, submit the form
+                    this.submit();
+                } else {
+                    // If validation fails, display an error message
+                    $("#seat-allocation-results").html("<p>Error: All selected branch-semester combinations must be different.</p>");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

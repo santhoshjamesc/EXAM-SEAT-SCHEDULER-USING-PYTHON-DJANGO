@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #content {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .rooms {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .room {
+            width: 48%;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .room h2 {
+            margin-top: 0;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        #submit {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 30px auto;
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            text-transform: uppercase;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #submit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>Seat Allocation Result</h1>
+        <div class="rooms">
+            {% for room_name, benches in allocation_result.items %}
+                <div class="room">
+                    <h2>Room : {{ room_name }}</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Bench Number</th>
+                                <th>Seat Number</th>
+                                <th>Name</th>
+                                <th>Registration Number</th>
+                                <th>Subject</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bench_num, bench_seats in benches.items %}
+                            {% for student in bench_seats %}
+                                <tr>
+                                    <td>Bench {{ bench_num }}</td> <!-- Print Bench Number for every row -->
+                                    <td>Seat {{ forloop.counter }}</td> <!-- Seat Number is the current iteration count -->
+                                    <td>{{ student.name }}</td> <!-- Name -->
+                                    <td>{{ student.reg_no }}</td> <!-- Registration Number -->
+                                    <td>{{ student.subject }}</td> <!-- Subject -->
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+       
+        <button id="submit">Export to PDF</button>
+        <button id="collectDataButton">Collect Data</button>
+    
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script>
+
+
+        var dataToSend = {{ data_to_send|safe }};
+
+        console.log('Data to Send:', dataToSend);
+
+
+
+       // Create a jsPDF instance with landscape orientation and A4 size
+const doc = new jsPDF('landscape', 'px', 'a4');
+
+// Define special element handlers
+const specialElementHandlers = {
+  '#editor': (element, renderer) => true,
+};
+
+// Add event listener to the submit button
+$('#submit').on('click', () => {
+  // Get the HTML content to be converted to PDF
+  const htmlContent = $('#content').html();
+
+  // Set the PDF options for better readability
+  const pdfOptions = {
+    width: 1200, // Increase width for better fitting
+    elementHandlers: specialElementHandlers,
+    useCss: true, // Use CSS for better rendering
+  };
+
+  // Convert HTML to PDF
+  doc.fromHTML(htmlContent, 18, 20, pdfOptions);
+
+  // Save the PDF with a meaningful filename
+  const filename = 'eatalloc_' + new Date().toISOString() + '.pdf';
+  doc.save(filename);
+});
+
+
+
+
+
+
+
+
+         // Function to collect data and send it to Django
+         function collectData() {
+            // Retrieve CSRF token from meta tag
+            var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            
+            // Retrieve other data as needed
+            var dataToSend = {{ data_to_send|safe }};
+            console.log('Data to Sendssssssssss:', dataToSend);
+            // AJAX request to send data to Django
+            fetch('/collect_data/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify(dataToSend)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                    console.log('Data sent successfully');
+                } else {
+                    return response.json();
+                    console.error('Failed to send data');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Add event listener to the button
+        document.getElementById('collectDataButton').addEventListener('click', collectData);
+    
+    
+    
+    
+    
+    
+    
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    </script>
+    
+
+    
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="https://www.pngmart.com/files/23/A-PNG-Photo.png">  
+    <title>EXAMER</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #444;
+        }
+        h2 {
+            color: #444;
+            margin-top: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+        form input[type="file"], form input[type="text"], form select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        form button {
+            background-color:#4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #3e8e41;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ee3017;
+            padding: 10px 20px;
+            height: 50px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: larger;
+            padding: 10px;
+            
+        }
+        nav a:hover {
+    
+            color: black;
+        }
+        .nav-alloc{
+            font-size: larger;
+            padding-left: 4px;
+            padding-bottom: 1px;
+        }
+      
+        #change-password-btn {
+                    background-color: #4CAF50; /* light green background color */
+                    border: none;
+                    color: #ffff; /* dark gray text color */
+                    padding: 10px 20px; /* add some padding to make the button larger */
+                    font-size: 16px; /* increase the font size */
+                    cursor: pointer; /* change the cursor to a pointing hand when hovered */
+                    border-radius: 4px; /* add border radius */
+}
+
+#change-password-btn:hover {
+                        background-color: #3e8e41; /* slightly darker green background color on hover */
+                        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <div class="nav-alloc">
+        <a href="#">Home</a>
+        <a href="/presets/?user={{ request.user }}">Allocate</a>
+        <a href="{% url 'student_list_and_add' %}">Students</a>
+        </div>
+            <a href="/signout/">Sign out</a>  
+    </nav>
+
+    <div class="container">
+        <h1>Hello {{request.user}}</h1>
+      <!----  <ahref="/signout/">signout</a><br>-->
+        <!--<form method="post" action="/upload/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="pic">upload your profile pic</label><br>
+            <input type="file" name="pic" accept="Image/*"><br>
+            <button type="submit">upload</button>
+        </form>
+        {% for p in img %}
+        <img src="/media/{{p.pic}}"><br>
+        {% endfor %}-->
+
+
+        <button id="change-password-btn">Change Password</button>
+
+        <div class="changepassword" style="display: none;">
+            <div class="change_password">
+                <form action="{% url 'change_password' %}" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <label for="current_password">Current Password:</label>
+                        <input type="password" id="current_password" name="current_password" required>
+                    </div>
+                    <div>
+                        <label for="new_password">New Password:</label>
+                        <input type="password" id="new_password" name="new_password" required>
+                    </div>
+                    <div>
+                        <label for="confirm_password">Confirm New Password:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                    </div>
+                    <button type="submit">Change Password</button>
+                </form>
+            </div>
+        
+        <script>
+            document.getElementById('change-password-btn').addEventListener('click', function() {
+                document.querySelector('.changepassword').style.display = 'block';
+                this.style.display = 'none'; // hide the button
+            });
+        </script>
+    </div>
+
+
+    <div class="container">
+        <h2>Enhanced Room and Seating Management</h2>
+        <form method="post" action="/insert_room_details/">
+            {% csrf_token %}<input type="hidden" id="user" name="user" value="{{ request.user }}" readonly>
+            <label for="preset_Name">Enter the block name:</label><br>
+            <input type="text" id="preset_Name" name="preset_name"><br>
+            <h2>Room Input</h2>
+            <div id="roomInputSection">
+                <div class="input-group">
+                    <label for="n">Enter the number of rooms available:</label><br>
+                    <input type="number" id="n" name="n" min="1" value="1"><br>
+                </div>
+                <button onclick="generateRoomInputs(event)">Generate Fields</button>
+
+            </div>
+            <div id="roomDetailsSection"></div>
+            <!-- Save button -->
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <script>
+        function generateRoomInputs(event) {
+            // Prevent default form submission behavior
+            event.preventDefault();
+
+            const numberOfRooms = document.getElementById("n").value;
+            const roomDetailsSection = document.getElementById("roomDetailsSection");
+            roomDetailsSection.innerHTML = ''; // Clear previous inputs
+
+            for (let i = 1; i <= numberOfRooms; i++) {
+                const roomGroup = document.createElement("div");
+                roomGroup.classList.add("input-group");
+                roomGroup.innerHTML = `
+                    <label>Enter the name of Room ${i}: </label><br>
+                    <input type="text" id="room${i}name" name="room${i}name"><br>
+                    <label>Enter the number of benches in Room ${i}: </label><br>
+                    <input type="number" id="room${i}benches" name="room${i}benches" min="1" step="1"><br>
+                    <label>Enter the number of seats per bench in Room ${i}: </label><br>
+                    <input type="number" id="room${i}seats" name="room${i}seats" min="1" step="1">
+                `;
+                roomDetailsSection.appendChild(roomGroup);
+            }
+        }
+
+        function saveData(event) {
+            // Prevent default form submission behavior
+            event.preventDefault();
+
+            console.log('Save button clicked');
+
+            // Retrieve preset name and room details
+            const presetName = document.getElementById("preset_Name").value;
+            const roomDetails = [];
+            const numberOfRooms = document.getElementById("n").value;
+
+            // Flag to track if all fields are valid
+            let isValid = true;
+
+            // Loop through each room to get details
+            for (let i = 1; i <= numberOfRooms; i++) {
+                const roomNameElement = document.getElementById(`room${i}name`);
+                const benchesElement = document.getElementById(`room${i}benches`);
+                const seatsPerBenchElement = document.getElementById(`room${i}seats`);
+
+                // Retrieve values
+                const roomName = roomNameElement.value.trim();
+                const benches = benchesElement.value.trim();
+                const seatsPerBench = seatsPerBenchElement.value.trim();
+
+                console.log(`Room ${i}: name=${roomName}, benches=${benches}, seatsPerBench=${seatsPerBench}`);
+
+// Check if any of the fields are empty
+                if (!roomName || !benches || !seatsPerBench) {
+                    isValid = false;
+                    alert(`Please fill in all fields for Room ${i}`);
+                    console.log(`Empty field detected in Room ${i}`);
+                    break;
+                }
+
+                const room = {
+                    name: roomName,
+                    benches: benches,
+                    seatsPerBench: seatsPerBench
+                };
+                roomDetails.push(room);
+            }
+
+            // If all fields are valid, proceed to send data to the server
+            if (isValid && presetName.trim() !== '') {
+                // Prepare data to be sent to the server
+                const data = {
+                    preset_name: presetName,
+                    room_details: roomDetails
+                };
+
+                // Send data to the server using AJAX
+                fetch('/insert_room_details/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken') // Get CSRF token (assuming you're using CSRF protection)
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // Handle response from server
+                    console.log('Success:', data);
+                    // Redirect or display a success message as needed
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle errors and display appropriate messages
+                });
+            } else {
+                if (presetName.trim() === '') {
+                    alert('Please enter a preset name.');
+                    console.log('Empty preset name detected.');
+                }
+            }
+        }
+
+        // Function to get CSRF token from cookies
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+
+</body>
+</html>
